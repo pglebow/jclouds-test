@@ -5,6 +5,7 @@ package com.glebow.jclouds.service;
 
 import java.nio.charset.Charset;
 
+import org.jclouds.blobstore.domain.PageSet;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,16 +26,18 @@ public class LocalFileSystemServiceTest {
 
 	@Autowired
 	private LocalFileSystemService service;
-	
+
 	/**
-	 * Test method for {@link com.glebow.jclouds.service.LocalFileSystemService#writeData(byte[], java.lang.String, java.lang.String)}.
+	 * Test method for
+	 * {@link com.glebow.jclouds.service.LocalFileSystemService#writeData(byte[], java.lang.String, java.lang.String)}
+	 * .
 	 */
 	@Test
 	public void testWriteData() {
 		String testData = "This is test data";
 		String name = "unitTestData";
 		String container = this.getClass().getName();
-		
+
 		String eTag;
 		try {
 			eTag = service.writeData(testData.getBytes(Charset.defaultCharset()), container, name);
@@ -43,6 +46,15 @@ public class LocalFileSystemServiceTest {
 			log.error(e.getMessage(), e);
 			Assert.fail(e.getMessage());
 		}
+	}
+
+	@Test
+	public void testListContents() {
+		String container = this.getClass().getName();
+
+		PageSet<?> s = service.getBlobs(container);
+		Assert.assertNotNull(s);
+		s.forEach(p -> log.info(p.toString()));
 	}
 
 }

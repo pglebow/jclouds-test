@@ -5,6 +5,7 @@ package com.glebow.jclouds.service;
 
 import java.io.IOException;
 
+import org.jclouds.blobstore.domain.PageSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class LocalFileSystemService {
-
-	public LocalFileSystemService() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	@Autowired
 	private LocalFileSystemDao dao;
@@ -45,6 +41,14 @@ public class LocalFileSystemService {
 			log.error(e.getMessage(), e);
 		}
 
+		return retVal;
+	}
+	
+	public PageSet<?> getBlobs(final String container) {
+		PageSet<?> retVal = null;
+		
+		retVal = dao.listContents(container);
+		
 		return retVal;
 	}
 }
