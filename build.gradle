@@ -36,6 +36,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-cloud-connectors')
 	compile('org.projectlombok:lombok')
 	compile('org.apache.jclouds:jclouds-blobstore:1.9.2')
+	compile('org.apache.jclouds:jclouds-allblobstore:1.9.2')
+	compile('org.apache.jclouds.api:filesystem:1.9.2')
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 }
 

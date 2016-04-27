@@ -21,6 +21,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LocalFileSystemService {
 
+	public LocalFileSystemService() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@Autowired
 	private LocalFileSystemDao dao;
 
