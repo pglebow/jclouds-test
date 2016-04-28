@@ -13,6 +13,7 @@ import org.jclouds.openstack.swift.v1.SwiftApi;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.inject.Module;
@@ -22,6 +23,7 @@ import com.google.inject.Module;
  *
  */
 @Configuration
+@PropertySource("classpath:/com/glebow/jclouds/config/openstack/openstack.properties")
 public class JCloudsConfigClass {
 
 	@Value("${openstack_host}")

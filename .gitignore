@@ -2,6 +2,7 @@
 build/
 out/
 output/
+src/main/java/com/glebow/jclouds/config/openstack/openstack.properties
 # ------------------------------------------------------------------------------ #
 # Java defaults (https://github.com/github/gitignore/blob/master/Java.gitignore) #
 # ------------------------------------------------------------------------------ #
