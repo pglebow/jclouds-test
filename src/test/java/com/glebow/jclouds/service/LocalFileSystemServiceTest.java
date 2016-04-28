@@ -3,9 +3,14 @@
  */
 package com.glebow.jclouds.service;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Set;
 
 import org.jclouds.blobstore.domain.PageSet;
+import org.jclouds.openstack.swift.v1.SwiftApi;
+import org.jclouds.openstack.swift.v1.domain.Container;
+import org.jclouds.openstack.swift.v1.features.ContainerApi;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +31,9 @@ public class LocalFileSystemServiceTest {
 
 	@Autowired
 	private LocalFileSystemService service;
+
+	@Autowired
+	private SwiftApi swiftApi;
 
 	/**
 	 * Test method for
@@ -55,6 +63,22 @@ public class LocalFileSystemServiceTest {
 		PageSet<?> s = service.getBlobs(container);
 		Assert.assertNotNull(s);
 		s.forEach(p -> log.info(p.toString()));
+	}
+
+	@Test
+	public void testSwift() throws IOException {
+		try {
+			ContainerApi containerApi = swiftApi.getContainerApi("RegionOne");
+			Set<Container> containers = containerApi.list().toSet();
+
+			for (Container container : containers) {
+				System.out.println("  " + container);
+			}
+			swiftApi.close();
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			Assert.fail(e.getMessage());
+		}
 	}
 
 }
