@@ -49,8 +49,9 @@ public class JCloudsConfigClass {
 
 	@Bean(name = "openStackSwiftApi")
 	public SwiftApi getSwiftApi() {
+		//System.setProperty("jsse.enableSNIExtension", "false");
 		Iterable<Module> modules = ImmutableSet.<Module>of(new SLF4JLoggingModule());
-		SwiftApi swiftApi = ContextBuilder.newBuilder("openstack-swift").endpoint("https://" + host + ":5000/v2.0/")
+		SwiftApi swiftApi = ContextBuilder.newBuilder("openstack-swift").endpoint("http://" + host + ":5000/v2.0")
 				.credentials(tenant + ":" + userName, password).modules(modules).buildApi(SwiftApi.class);
 
 		return swiftApi;

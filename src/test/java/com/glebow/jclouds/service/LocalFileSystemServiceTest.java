@@ -68,7 +68,7 @@ public class LocalFileSystemServiceTest {
 	@Test
 	public void testSwift() throws IOException {
 		try {
-			ContainerApi containerApi = swiftApi.getContainerApi("RegionOne");
+			ContainerApi containerApi = swiftApi.getContainerApi("RegionOne");			
 			Set<Container> containers = containerApi.list().toSet();
 
 			for (Container container : containers) {
